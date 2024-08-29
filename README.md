@@ -50,16 +50,16 @@
     -Vercel
     - Cloudinary
 
-### WEEK2 :
+# **WEEK-2**
 
-1.Creating Routes
-  @Design and implement all necessary routes for the project.
-2.Database Integration
-  @Connect the database to the server.
-  @Create all required models.
-3.Authentication and Authorization
-  @Implement authentication and authorization   mechanisms.
-4.User Management
-  @Develop signup and signin functionality for different roles (user, admin, seller, etc.).
-5.Middleware Development
-  @Create authentication middleware to secure routes.
+ ### 1.Creating Routes:
+   - Design and implement all necessary routes for the project.
+ ### 2.Database Integration
+   - Connect the database to the server.
+   -  Create all required models.
+ ### 3.Authentication and Authorization
+   - Implement authentication and authorization   mechanisms.
+ ### 4.User Management
+   - Develop signup and signin functionality for different roles (user, admin, seller, etc.). 
+ ### 5.Middleware Development
+   - Create authentication middleware to secure routes.
