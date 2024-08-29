@@ -1,12 +1,9 @@
-import { Router } from "express";
-import userRouter from "./user/user.routes.js";
-import managerRouter from "./manager/manager.routes.js";
-import adminRouter from "./admin/admin.routes.js";
+const express = require('express');
+const v1Router = require('./v1/index.js');
 
-const rootRouter = Router();
+const rootRouter = express.Router();
 
-rootRouter.use("/user", userRouter);
-rootRouter.use("/managerr", managerRouter)
-rootRouter.use("/admin", adminRouter)
+rootRouter.use("/v1", v1Router);
 
-export default rootRouter;
+// Export rootRouter as default
+module.exports = rootRouter;
