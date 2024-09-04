@@ -6,8 +6,8 @@ function generateUserToken(user) {
     });
 }
 
-const generateOwnerToken = (owner) => {
-    const { role, id } = owner;
+const generateManagerToken = (manager) => {
+    const { role, id } = manager;
     return jwt.sign({ id, role }, process.env.JWT_SECRET, {
         expiresIn: "1d"
     });
@@ -15,5 +15,5 @@ const generateOwnerToken = (owner) => {
 
 module.exports = {
     generateUserToken,
-    generateOwnerToken
+    generateManagerToken
 };
