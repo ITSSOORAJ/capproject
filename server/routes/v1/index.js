@@ -2,7 +2,7 @@ const express = require('express');
 const v1Router = express.Router();
 
 
-const userRouter=require("./user/userroutes.js");
+const userRouter=require("./user/user.routes.js");
 const managerRouter = require( "./manager/manager.routes.js");
 //import adminRouter from "./admin/admin.routes.js";
 const adminRouter = require("./admin/admin.routes.js")

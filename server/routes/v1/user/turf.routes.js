@@ -1,9 +1,19 @@
 const express = require('express');
+const {
+  getAllTurfs,
+  getTurfById,
+  getTimeSlotByTurfId
+} = require('../../../controllers/user/turf.controller');
+
 const turfRouter = express.Router();
 
-// Define your routes here
-turfRouter.get('/', (req, res) => {
-    res.send('Turf route');
-});
+// Get all turfs
+turfRouter.get('/all', getAllTurfs);
 
-module.exports = { turfRouter }; // Ensure it's exported as an object
+// Get single turf by id
+turfRouter.get('/details/:id', getTurfById);
+
+// Get time slots by turf id (pass with query)
+turfRouter.get('/timeSlot', getTimeSlotByTurfId);
+
+module.exports = turfRouter; // Ensure you are exporting the router correctly

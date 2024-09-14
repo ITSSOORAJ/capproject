@@ -6,4 +6,6 @@ const timeSlotSchema = new mongoose.Schema({
     endTime: { type: Date, required: true },
 }, { timestamps: true });
 
-module.exports = mongoose.model('TimeSlot', timeSlotSchema);
+const Timeslot = mongoose.model('TimeSlot', timeSlotSchema);
+
+module.exports=Timeslot
