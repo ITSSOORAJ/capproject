@@ -8,7 +8,7 @@ const dashboardRouter =require("./dashboard.routes.js")
 const turfRouter = require("./turf.routes.js")
 const adminRouter = express.Router();
 adminRouter.use("/managers",verifyAdminToken,managerManagementRouter)
-adminRouter.use("/owner-requests", verifyAdminToken, managerRequestRouter);
+adminRouter.use("/manager-requests", verifyAdminToken, managerRequestRouter);
 adminRouter.use("/users", verifyAdminToken, userManagementRouter);
 adminRouter.use("/transactions", verifyAdminToken, transactionRouter);
 adminRouter.use("/dashboard", verifyAdminToken, dashboardRouter);

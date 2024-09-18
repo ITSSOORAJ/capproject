@@ -114,7 +114,8 @@ const loginmanager = async (req, res) => {
       success: true,
       message: "Login successful",
       token,
-      role: Manager.role,
+      role: manager.role
+
     });
   } catch (err) {
     console.log(err.message);
