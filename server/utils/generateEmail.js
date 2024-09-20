@@ -2,12 +2,16 @@ const nodemailer = require("nodemailer");
 
 
 async function generateEmail(to, subject, html) {
+  console.log("Email:", process.env.EMAIL),
+  console.log("Password:", process.env.PASSWORD);
   try {
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
         user: process.env.EMAIL, 
         pass: process.env.PASSWORD,
+  
+
       },
     });
 
@@ -18,9 +22,11 @@ async function generateEmail(to, subject, html) {
       html: html,
     };
     await transporter.sendMail(mailOptions);
-  } catch (e) {
+  }
+  catch (e) {
     console.log("Error in generateEmail", e);
   }
+  
 }
 
 const generateHTMLContent = (

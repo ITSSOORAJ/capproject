@@ -11,25 +11,45 @@ const turfRegister = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ success: false, message: errors.array() });
   }
+  
   try {
     // Upload the turf image to Cloudinary
     const turfImage = await cloudinary.uploader.upload(image, {
       folder: 'TurfSpot/turfs',
     });
+
     const turf = new Turf({
       image: turfImage.secure_url,
       manager,
       ...req.body,
     });
-    await turf.save();
-    return res
-      .status(201)
-      .json({ success: true, message: 'Turf created successfully' });
+    
+    // Save the turf first
+    const savedTurf = await turf.save();
+    
+    // Create time slots based on open and close time
+    const { openTime, closeTime } = req.body;
+    const startTime = new Date(`1970-01-01T${openTime}:00Z`); // Example: Adjust as needed
+    const endTime = new Date(`1970-01-01T${closeTime}:00Z`);
+    
+    // Create slots every hour (adjust interval as needed)
+    for (let time = startTime; time < endTime; time.setHours(time.getHours() + 1)) {
+      const timeSlot = new Timeslot({
+        turf: savedTurf._id,
+        startTime: new Date(time), // Create a new Date object
+        endTime: new Date(time.getTime() + 60 * 60 * 1000), // 1 hour duration
+      });
+      
+      await timeSlot.save(); // Save each time slot
+    }
+
+    return res.status(201).json({ success: true, message: 'Turf created successfully' });
   } catch (err) {
     console.error(err.message);
     return res.status(500).json({ success: false, message: err.message });
   }
 };
+
 
 // Get all turfs by Manager ID
 const getTurfByManager = async (req, res) => {

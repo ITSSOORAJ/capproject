@@ -4,10 +4,11 @@ import { Carousel, Footer } from "@components/common";
 
 import banner1 from "/banner-1.png";
 import banner2 from "/banner-2.jpeg";
-import banner3 from "/banner-3.jpeg";
+import banner3 from "/banner-3.jpg";
+import gif_basket from "/gif_basket.gif"
 
 const Home = () => {
-  const slides = [banner1, banner2, banner3];
+  const slides = [gif_basket,banner1, banner2, banner3];
 
   return (
     <div className="  bg-base-100 text-base-content">

@@ -54,7 +54,7 @@ const approvemanagerRequest = async (req, res) => {
         </button>
     </div>
     `;
-    await generateEmail(to, subject, html);
+     generateEmail(to, subject, html);
     return res
       .status(200)
       .json({ success: true, message: "manager request approved" });
@@ -90,8 +90,8 @@ const deletemanagerRequest = async (req, res) => {
         <p>We apologize for the inconvenience. Please contact us if you have any further questions.</p>
         <p>Thank you for your understanding.</p>
     </div>
-    `;
-    await generateEmail(to, subject, html);
+    `
+     generateEmail(to, subject, html);
     return res
       .status(200)
       .json({ success: true, message: "manager request rejected" });
@@ -128,7 +128,7 @@ const reconsidermanagerRequest = async (req, res) => {
         <p>Thank you for your understanding.</p>
     </div>
     `;
-    await generateEmail(to, subject, html);
+    generateEmail(to, subject, html);
     return res
       .status(200)
       .json({ success: true, message: "manager request reconsidered" });

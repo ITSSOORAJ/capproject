@@ -3,8 +3,8 @@ const {
   verifyPayment,
   createOrder,
   getBookings
-} = require('../../controllers/user/booking.controller');
-const verifyUserToken = require('../../middleware/jwt/user.middleware');
+} = require('../../../controllers/user/booking.controller');
+const verifyUserToken = require('../../../middleware/jwt/user.middleware');
 
 const bookingRouter = express.Router();
 

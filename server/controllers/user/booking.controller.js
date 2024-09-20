@@ -1,5 +1,5 @@
 const adjustTime = require('../../utils/adjustTime');
-const razorpay = require('../../config/razorpay');
+//const razorpay = require('../../config/razorpay');
 const crypto = require('crypto');
 const Booking = require('../../models/booking.model');
 const TimeSlot = require('../../models/timeSlot.model');
