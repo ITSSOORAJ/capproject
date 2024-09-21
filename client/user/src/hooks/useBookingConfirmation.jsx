@@ -1,3 +1,4 @@
+import React from "react";
 import { format, parse, set, formatISO, addHours, parseISO } from "date-fns";
 import toast from "react-hot-toast";
 import axiosInstance from "./useAxiosInstance";
@@ -51,7 +52,7 @@ const useBookingConfirmation = (
       };
 
       const response = await axiosInstance.post(
-        "/api/v1/user/booking/verify-payment",
+        "/api/v1/user/bookings/verify-payment",
         bookingData
       );
       const result = await response.data;
@@ -60,6 +61,7 @@ const useBookingConfirmation = (
     } catch (err) {
       if (err.response) {
         toast.error(err.response?.data?.message);
+        console.log(err.response);
       }
     } finally {
       setLoading(false);

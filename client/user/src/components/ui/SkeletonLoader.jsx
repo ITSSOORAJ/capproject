@@ -1,5 +1,5 @@
  
-
+import React from 'react';
   const SkeletonLoader = () => {
   return (
     <div className="card bg-base-100 shadow-xl animate-pulse">

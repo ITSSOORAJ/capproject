@@ -1,3 +1,4 @@
+import React from 'react';
 import DateSelection from "./DateSelection";
 import TimeSelection from "./TimeSelection";
 import DurationSelection from "./DurationSelection";

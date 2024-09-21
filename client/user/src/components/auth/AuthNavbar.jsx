@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import ThemeSwitcher from "../common/ThemeSwitcher.jsx";
 import { logout } from "../../redux/slices/authSlice.js";

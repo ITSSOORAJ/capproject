@@ -1,11 +1,12 @@
 const adjustTime = require('../../utils/adjustTime');
-//const razorpay = require('../../config/razorpay');
+const razorpay = require('../../config/razorpay');
 const crypto = require('crypto');
 const Booking = require('../../models/booking.model');
 const TimeSlot = require('../../models/timeSlot.model');
 const generateQRCode = require('../../utils/generateQRCode');
 const Turf = require('../../models/turf.model');
-const generateEmail = require('../../utils/generateEmail');
+//const generateEmail = require('../../utils/generateEmail');
+const { generateHTMLContent,generateEmail } = require('../../utils/generateEmail');
 const User = require('../../models/user.model');
 const { format, parseISO } = require('date-fns');
 
@@ -13,17 +14,21 @@ exports.createOrder = async (req, res) => {
   const userId = req.user.user;
   try {
     const { totalPrice } = req.body;
-    // select only name and contact and email
+
+    // Find the user and select only necessary fields
     const user = await User.findById(userId).select('name email');
     if (!user) {
       return res.status(400).json({ message: 'User not found' });
     }
+
+    // Create the Razorpay order
     const options = {
       amount: totalPrice * 100,
       currency: 'INR',
       receipt: `receipt${Date.now()}`,
     };
     const order = await razorpay.orders.create(options);
+
     return res.status(200).json({ order, user });
   } catch (error) {
     return res.status(400).json({ message: error.message });
@@ -46,25 +51,24 @@ exports.verifyPayment = async (req, res) => {
   } = req.body;
 
   try {
+    // Format the start, end times, and date
     const formattedStartTime = format(parseISO(startTime), 'hh:mm a');
     const formattedEndTime = format(parseISO(endTime), 'hh:mm a');
     const formattedDate = format(parseISO(selectedTurfDate), 'd MMM yyyy');
 
-    // verify the Razorpay signature
+    // Verify the Razorpay signature
     const hmac = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET);
     hmac.update(`${orderId}|${paymentId}`);
     const generatedSignature = hmac.digest('hex');
     if (generatedSignature !== razorpay_signature) {
-      console.log('Payment Verification Failed');
       return res.status(400).json({ success: false, message: 'Payment Verification Failed' });
     }
-
-    // payment successful
 
     // Adjust time
     const adjustedStartTime = adjustTime(startTime, selectedTurfDate);
     const adjustedEndTime = adjustTime(endTime, selectedTurfDate);
 
+    // Find the user and turf
     const [user, turf] = await Promise.all([
       User.findById(userId),
       Turf.findById(turfId),
@@ -113,7 +117,7 @@ exports.verifyPayment = async (req, res) => {
     ]);
 
     // Generate and send email
-    const htmlContent = generateEmail.generateHTMLContent(
+    const htmlContent = generateHTMLContent(
       turf.name,
       turf.location,
       formattedDate,
@@ -123,7 +127,9 @@ exports.verifyPayment = async (req, res) => {
       QRcode
     );
 
-    await generateEmail(user.email, 'Booking Confirmation', htmlContent);
+    // Ensure generateEmail is imported correctly
+    generateEmail(user.email, 'Booking Confirmation', htmlContent);
+
     return res.status(200).json({
       success: true,
       message: 'Booking successful, Check your email for the receipt',
@@ -146,10 +152,9 @@ exports.getBookings = async (req, res) => {
       .select('qrCode totalPrice')
       .populate('timeSlot', 'startTime endTime')
       .populate('turf', 'name location');
-    console.log(bookings, 'bookings');
+
     return res.status(200).json(bookings);
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: error.message });
   }
 };

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import FormField from "../../components/common/FormField";
 import useSignUpForm from "../../hooks/useSignUpForm";

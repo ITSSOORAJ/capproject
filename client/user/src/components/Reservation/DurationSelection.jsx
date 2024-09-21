@@ -1,3 +1,4 @@
+import React from 'react';
 import { getEndTime } from "../../utils/dateUtils";
 
 const DurationSelection = ({

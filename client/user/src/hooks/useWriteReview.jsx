@@ -36,7 +36,7 @@ const useWriteReview = () => {
 
     try {
       // Replace with your actual API endpoint
-      const response = await axiosInstance.post(`/api/user/review/${turfId}`, {
+      const response = await axiosInstance.post(`/api/v1/user/review/${turfId}`, {
         rating,
         review,
       });

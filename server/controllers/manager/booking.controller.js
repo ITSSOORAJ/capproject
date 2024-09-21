@@ -3,7 +3,7 @@ const Turf = require("../../models/turf.model.js");
 
 const getManagerBookings = async (req, res) => {
   try {
-    const ownerId = req.owner.id;
+    const managerId = req.manager.id;
 
     // Find turfs  by this manager
     const manTurfs = await Turf.find({ manager: managerId }).select("_id");

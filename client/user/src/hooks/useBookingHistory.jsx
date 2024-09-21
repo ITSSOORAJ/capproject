@@ -35,7 +35,7 @@ export default function useBookingHistory() {
     setLoading(true);
     try {
       const response = await axiosInstance.get(
-        "/api/v1/user/booking/get-bookings"
+        "/api/v1/user/bookings/get-bookings"
       );
       const result = response.data;
       const formattedBookings = formatBookingsData(result);

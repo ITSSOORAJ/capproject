@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from "react-router-dom";
 import Carousel from "../components/common/Carousel";
 import Footer from "../components/layout/Footer";

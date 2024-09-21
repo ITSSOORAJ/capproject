@@ -1,3 +1,4 @@
+import React from 'react';
 import useReviews from "../../hooks/useReviews";
 import { format } from "date-fns";
 import ReviewSkeleton from "../ui/ReviewSkeleton";

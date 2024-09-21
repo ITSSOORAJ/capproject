@@ -1,3 +1,4 @@
+import React from 'react';
 import { parse, addHours, format, isEqual } from "date-fns";
 
 export const getEndTime = (startTime, hours) => {
