@@ -4,7 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import Home from "@pages/Home.jsx";
 import Login from "@pages/Login";
-import SignUp from "@pages/SignUp";
+import SignUp from "@pages/Signup";
 
 //  all the components that are used in the layout
 import { AdminLayout, OwnerLayout, GuestLayout } from "@layouts";
