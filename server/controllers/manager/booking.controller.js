@@ -7,7 +7,7 @@ const getManagerBookings = async (req, res) => {
 
     // Find turfs  by this manager
     const manTurfs = await Turf.find({ manager: managerId }).select("_id");
-    console.log(manTurfs.length, "ManagedTurfs");
+    console.log(manTurfs.length, "managedTurfs");
 
     if (manTurfs.length === 0) {
       console.log("No bookings found for this manager's turfs");
