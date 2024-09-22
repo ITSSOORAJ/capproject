@@ -2,7 +2,7 @@ import axios from "axios";
 
 const axiosInstance = axios.create({
   // baseURL: "http://localhost:1234",
-  baseURL: "https://capproject-3.onrender.com",
+  baseURL: "https://capproject-2.onrender.com",
 });
 
 axiosInstance.interceptors.request.use((config) => {
