@@ -9,7 +9,7 @@ const useManagerBookings = () => {
   const [filterDays, setFilterDays] = useState(30);
   const [sortConfig, setSortConfig] = useState(null);
 
-  console.log(sortConfig, "sortConfig");
+  //console.log(sortConfig, "sortConfig");
 
   useEffect(() => {
     fetchBookings();
@@ -18,7 +18,7 @@ const useManagerBookings = () => {
   const fetchBookings = async () => {
     try {
       setLoading(true);
-       const response = await axiosInstance.get("/api/v1/manager/bookings");
+       const response = await axiosInstance.get("/api/v1/manager/bookings/");
       const result = response.data;
       setAllBookings(result);
       setLoading(false);
