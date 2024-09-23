@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import FormField from "../../components/common/FormField";
 import Button from "../../components/common/Button";
 import useBecomeOwner from "../../hooks/useBecomeOwner";
