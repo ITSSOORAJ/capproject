@@ -49,9 +49,6 @@ const GuestNavbar = () => {
       </div>
       <div className="navbar-end">
         <ThemeSwitcher />
-        <Link to="/signup" className="btn btn-primary btn-outline">
-          Sign up
-        </Link>
       </div>
     </div>
   );
