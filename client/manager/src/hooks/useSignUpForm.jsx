@@ -53,13 +53,13 @@ const useSignUpForm = () => {
      setLoading(true);
     try {
       const response = await axiosInstance.post(
-        "/api/owner/auth/register",
+        "/api/v1/manager/auth/register",
         data
       );
       const result = await response.data;
         dispatch(login({ token: result.token, role: result.role }));
-        if (result.role === "owner") {
-          navigate("/owner");
+        if (result.role === "manager") {
+          navigate("/manager");
         } else if (result.role === "admin") {
           navigate("/admin");
         }
