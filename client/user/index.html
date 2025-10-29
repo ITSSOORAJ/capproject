@@ -1,38 +1,74 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <script>
-    // 1. Initialize the primary object
-    window.digitalData = window.digitalData || {};
+   <script>
+window.digitalData = window.digitalData || {};
 
-    // 2. Page Context (Essential for standard reporting)
-    digitalData.page = digitalData.page || {};
-    digitalData.page.pageName = "Homepage: Main Landing";          // Core page name
-    digitalData.page.siteSection = "Home";                        // High-level section (e.g., 'Blog', 'Product')
-    digitalData.page.subSection1 = "Main";                        // First level of sub-section
-    digitalData.page.template = "homeTemplateV1";                 // Page template or layout version
-    digitalData.page.language = "en-us";                          // Content language
-    digitalData.page.server = "Web-Server-01";                    // The server hosting the page (useful for IT)
-    
-    // 3. User & Session Status (Key for segmentation and personalization)
-    digitalData.user = digitalData.user || {};
-    digitalData.user.profile = digitalData.user.profile || {};
-    digitalData.user.profile.status = "Guest";                    // 'Authenticated' or 'Guest'
-    digitalData.user.profile.segment = "NewVisitor";              // 'NewVisitor', 'ReturningCustomer', 'Subscriber' (simulated)
-    digitalData.user.session = digitalData.user.session || {};
-    digitalData.user.session.loggedInTime = "";                   // Empty, or timestamp if logged in
-    
-    // 4. Content Attributes (If your homepage features specific content or promotions)
-    digitalData.content = digitalData.content || {};
-    digitalData.content.articleId = "";                           // Empty on home, filled on blog pages
-    digitalData.content.promotionType = "HeroBanner";             // e.g., 'None', 'FlashSale', 'HeroBanner'
-    digitalData.content.promotionName = "WelcomeMessagePromo";
-    
-    // 5. Product/E-commerce (Crucial for e-commerce or conversion-focused sites)
-    digitalData.product = digitalData.product || [];              // Array for product data (empty on home)
+// 1. Page Context
+digitalData.page = {
+  pageName: "Homepage: Main Landing",          // Dynamic based on route
+  siteSection: "Home",                         // e.g., Explore, Booking, Manager
+  subSection1: "Main",                         // Optional deeper section
+  template: "homeTemplateV1",
+  language: "en-us",
+  server: "Web-Server-01"
+};
 
+// 2. User Info
+digitalData.user = {
+  profile: {
+    status: "Guest",                           // 'Authenticated' or 'Guest'
+    segment: "NewVisitor",                     // 'NewVisitor', 'ReturningUser', 'Manager'
+    userId: null,                              // Populated if logged in
+    role: "Guest"                              // 'Guest', 'User', 'Manager'
+  },
+  session: {
+    loggedInTime: "",                          // ISO timestamp if logged in
+    sessionId: "sess_" + Date.now()            // Simple session ID
+  }
+};
+
+// 3. Turff Info (if applicable)
+digitalData.turff = {
+  id: "",                                      // Turff ID
+  name: "",                                    // Turff name
+  location: "",                                // City or area
+  pricePerHour: null,
+  availability: "",                            // 'Available', 'Booked'
+  surfaceType: "",                             // e.g., 'Artificial Grass'
+  lights: false                                // true/false
+};
+
+// 4. Booking Info (if applicable)
+digitalData.booking = {
+  status: "",                                  // 'Initiated', 'Completed', 'Failed'
+  date: "",
+  timeSlot: "",
+  paymentMethod: "",                           // 'UPI', 'Card', etc.
+  bookingId: ""
+};
+
+// 5. Search & Filter Info
+digitalData.search = {
+  location: "",
+  date: "",
+  time: "",
+  filters: []                                  // e.g., ['5-a-side', 'Floodlights']
+};
+
+// 6. Content & Promotion
+digitalData.content = {
+  articleId: "",                               // For blog or content pages
+  promotionType: "HeroBanner",
+  promotionName: "WelcomeMessagePromo"
+};
+
+// 7. Event Tracking
+digitalData.event = {
+  type: "",                                    // e.g., 'View Turff', 'Click Book', 'Login Success'
+  timestamp: new Date().toISOString()
+};
 </script>
-
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
