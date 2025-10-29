@@ -1,6 +1,38 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+    // 1. Initialize the primary object
+    window.digitalData = window.digitalData || {};
+
+    // 2. Page Context (Essential for standard reporting)
+    digitalData.page = digitalData.page || {};
+    digitalData.page.pageName = "Homepage: Main Landing";          // Core page name
+    digitalData.page.siteSection = "Home";                        // High-level section (e.g., 'Blog', 'Product')
+    digitalData.page.subSection1 = "Main";                        // First level of sub-section
+    digitalData.page.template = "homeTemplateV1";                 // Page template or layout version
+    digitalData.page.language = "en-us";                          // Content language
+    digitalData.page.server = "Web-Server-01";                    // The server hosting the page (useful for IT)
+    
+    // 3. User & Session Status (Key for segmentation and personalization)
+    digitalData.user = digitalData.user || {};
+    digitalData.user.profile = digitalData.user.profile || {};
+    digitalData.user.profile.status = "Guest";                    // 'Authenticated' or 'Guest'
+    digitalData.user.profile.segment = "NewVisitor";              // 'NewVisitor', 'ReturningCustomer', 'Subscriber' (simulated)
+    digitalData.user.session = digitalData.user.session || {};
+    digitalData.user.session.loggedInTime = "";                   // Empty, or timestamp if logged in
+    
+    // 4. Content Attributes (If your homepage features specific content or promotions)
+    digitalData.content = digitalData.content || {};
+    digitalData.content.articleId = "";                           // Empty on home, filled on blog pages
+    digitalData.content.promotionType = "HeroBanner";             // e.g., 'None', 'FlashSale', 'HeroBanner'
+    digitalData.content.promotionName = "WelcomeMessagePromo";
+    
+    // 5. Product/E-commerce (Crucial for e-commerce or conversion-focused sites)
+    digitalData.product = digitalData.product || [];              // Array for product data (empty on home)
+
+</script>
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
